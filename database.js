@@ -1,3 +1,5 @@
+// add dotenv
+require('dotenv').config();
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qxj4r.mongodb.net/?retryWrites=true&w=majority`;
@@ -11,7 +13,7 @@ const client = new MongoClient(uri, {
     }
 });
 
-async function run() {
+module.exports = dbconnect = async () => {
     try {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
@@ -23,4 +25,3 @@ async function run() {
         await client.close();
     }
 }
-run().catch(console.dir);
